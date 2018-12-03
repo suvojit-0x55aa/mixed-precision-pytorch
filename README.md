@@ -108,4 +108,4 @@ nVidia provides the [apex](https://github.com/NVIDIA/apex) library that handles 
 
 ---------------
 ##### Thanks:
-The project heavily borrows from @[kuangliu](https://github.com/kuangliu)'s project [pytorch-cifar](https://github.com/kuangliu/pytorch-cifar). THe models have been directly borrowed from the repository with minimal change, so thanks to @kuangliu for maintaining such awesome project.
+The project heavily borrows from @[kuangliu](https://github.com/kuangliu)'s project [pytorch-cifar](https://github.com/kuangliu/pytorch-cifar). The models have been directly borrowed from the repository with minimal change, so thanks to @kuangliu for maintaining such awesome project.
