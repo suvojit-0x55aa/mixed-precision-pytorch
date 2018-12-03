@@ -85,12 +85,14 @@ To train with `FP16` weights, use:
 `-s` flag enables loss scaling.
 
 #### Results
-Training on a single P100 GPU, I was able to obtain the following result, while training with ResNet50 with a batch size of 128 over 200 epochs.
+Training on a single P100 GPU, I was able to obtain the following result, while training with ResNet50 with a batch size of 128 over 200 epochs.  
+
 |  | FP32 | Mixed Precision |
 |------------|:-----:|:---------------:|
 | Time/Epoch | 1m32s | 1m15s |
 | Storage | 90 MB | 46 MB |
 | Accuracy | 94.50% | 94.43% |
+
 --------------
 ##### TODO
 - [ ] Test with all nets.
