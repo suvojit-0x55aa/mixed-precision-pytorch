@@ -85,7 +85,7 @@ To train with `FP16` weights, use:
 `-s` flag enables loss scaling.
 
 #### Results
-Training on a single P100 GPU, I was able to obtain the following result, while training with ResNet50 with a batch size of 128 over 200 epochs.  
+Training on a single P100 Pascal GPU, I was able to obtain the following result, while training with ResNet50 with a batch size of 128 over 200 epochs.  
 
 |  | FP32 | Mixed Precision |
 |------------|:-----:|:---------------:|
@@ -93,11 +93,19 @@ Training on a single P100 GPU, I was able to obtain the following result, while 
 | Storage | 90 MB | 46 MB |
 | Accuracy | 94.50% | 94.43% |
 
+Training on a 4x K80 Tesla GPUs, with ResNet50 with a batch size of 512 over 200 epochs.  
+
+|  | FP32 | Mixed Precision |
+|------------|:-----:|:---------------:|
+| Time/Epoch | 1m24s | 1m17s |
+| Storage | 90 MB | 46 MB |
+| Accuracy | 94.634% | 94.922% |
+
 --------------
 ##### TODO
 - [ ] Test with all nets.
 - [ ] Test models on Volta GPUs.
-- [ ] Test runtimes on multi GPU setup.
+- [x] Test runtimes on multi GPU setup.
 --------------
 ##### Further Explorations:
 - Training with INT8 weights. Yes, the weights can be quantanized to 8-bit integers. See [Training and Inference with Integers in Deep Neural Networks](https://arxiv.org/pdf/1802.04680.pdf).
