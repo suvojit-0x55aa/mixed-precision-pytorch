@@ -101,6 +101,14 @@ Training on a 4x K80 Tesla GPUs, with ResNet50 with a batch size of 512 over 200
 | Storage | 90 MB | 46 MB |
 | Accuracy | 94.634% | 94.922% |
 
+Training on a 4x P100 Tesla GPUs, with ResNet50 with a batch size of 512 over 200 epochs.  
+
+|  | FP32 | Mixed Precision |
+|------------|:-----:|:---------------:|
+| Time/Epoch | 26s224ms | 23s359ms |
+| Storage | 90 MB | 46 MB |
+| Accuracy | 94.51% | 94.78% |
+
 --------------
 ##### TODO
 - [ ] Test with all nets.
