@@ -125,26 +125,34 @@ class Trainer(object):
         train_loss, correct, total = 0, 0, 0
 
         # Declare optimizer.
-        if self.fp16_mode:
-            optimizer = optim.SGD(
-                self.master_params, lr, momentum=0.9, weight_decay=5e-4)
-        else:
-            optimizer = optim.SGD(
-                self.model.parameters(), lr, momentum=0.9, weight_decay=5e-4)
+        if not hasattr(self, 'optimizer'):
+            if self.fp16_mode:
+                self.optimizer = optim.SGD(
+                    self.master_params, lr, momentum=0.9, weight_decay=5e-4)
+            else:
+                self.optimizer = optim.SGD(
+                    self.model.parameters(),
+                    lr,
+                    momentum=0.9,
+                    weight_decay=5e-4)
 
         # If epoch less than 5 use warmup, else use scheduler.
         if epoch < 5:
             lr = self.warmup_learning_rate(lr, no_of_steps, epoch,
                                            len(trainloader))
-            for param_group in optimizer.param_groups:
+            for param_group in self.optimizer.param_groups:
+                param_group['lr'] = lr
+        elif epoch == 5:
+            for param_group in self.optimizer.param_groups:
                 param_group['lr'] = lr
 
         scheduler = MultiStepLR(
-            optimizer, milestones=[80, 120, 160, 180], gamma=0.1)
+            self.optimizer, milestones=[80, 120, 160, 180], gamma=0.1)
         if epoch >= 5:
             scheduler.step(epoch=epoch)
-        print('Learning Rate: %g' % (scheduler.get_lr()[0]))
 
+        print('Learning Rate: %g' % (list(
+            map(lambda group: group['lr'], self.optimizer.param_groups)))[0])
         # Loss criterion is in FP32.
         criterion = nn.CrossEntropyLoss()
 
@@ -173,12 +181,12 @@ class Trainer(object):
                     for params in self.master_params:
                         params.grad.data = params.grad.data / self._LOSS_SCALE
                 # Apply weight update in FP32.
-                optimizer.step()
+                self.optimizer.step()
                 # Copy the updated weights back FP16 model weights.
                 self.master_params_to_model_params(self.model_params,
                                                    self.master_params)
             else:
-                optimizer.step()
+                self.optimizer.step()
 
             train_loss += loss.item()
             _, predicted = outputs.max(1)
