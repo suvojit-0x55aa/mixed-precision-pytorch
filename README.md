@@ -93,7 +93,7 @@ Training on a single P100 Pascal GPU, I was able to obtain the following result,
 | Storage | 90 MB | 46 MB |
 | Accuracy | 94.50% | 94.43% |
 
-Training on a 4x K80 Tesla GPUs, with ResNet50 with a batch size of 512 over 200 epochs.  
+Training on 4x K80 Tesla GPUs, with ResNet50 with a batch size of 512 over 200 epochs.  
 
 |  | FP32 | Mixed Precision |
 |------------|:-----:|:---------------:|
@@ -101,7 +101,7 @@ Training on a 4x K80 Tesla GPUs, with ResNet50 with a batch size of 512 over 200
 | Storage | 90 MB | 46 MB |
 | Accuracy | 94.634% | 94.922% |
 
-Training on a 4x P100 Tesla GPUs, with ResNet50 with a batch size of 512 over 200 epochs.  
+Training on 4x P100 Tesla GPUs, with ResNet50 with a batch size of 512 over 200 epochs.  
 
 |  | FP32 | Mixed Precision |
 |------------|:-----:|:---------------:|
@@ -109,10 +109,26 @@ Training on a 4x P100 Tesla GPUs, with ResNet50 with a batch size of 512 over 20
 | Storage | 90 MB | 46 MB |
 | Accuracy | 94.51% | 94.78% |
 
+Training on a single V100 Volta GPUs, with ResNet50 with a batch size of 128 over 200 epochs.  
+
+|  | FP32 | Mixed Precision |
+|------------|:-----:|:---------------:|
+| Time/Epoch | 47s112ms | 25s601ms |
+| Storage | 90 MB | 46 MB |
+| Accuracy | 94.87% | 94.65% |
+
+Training on 4x V100 Volta GPUs, with ResNet50 with a batch size of 512 over 200 epochs.  
+
+|  | FP32 | Mixed Precision |
+|------------|:-----:|:---------------:|
+| Time/Epoch | 17s841ms | 12s833ms |
+| Storage | 90 MB | 46 MB |
+| Accuracy | 94.38% | 94.60% |
+
 --------------
 ##### TODO
 - [ ] Test with all nets.
-- [ ] Test models on Volta GPUs.
+- [x] Test models on Volta GPUs.
 - [x] Test runtimes on multi GPU setup.
 --------------
 ##### Further Explorations:
